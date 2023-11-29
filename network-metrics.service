@@ -1,0 +1,11 @@
+[Unit]
+Description=Network Metrics Server for monitor of prometheus
+After=network.target
+
+[Service]
+WorkingDirectory=/usr/local/share/network-metrics
+ExecStart=/usr/local/share/network-metrics/network-metrics-server
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
