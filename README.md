@@ -10,6 +10,16 @@
 - `script.sh`：network-metrics-server 的依赖文件，用于筛选指标的数据
 - `network-metrics.service` 用于注册系统服务
 - `README.md`：当前文件，用于对项目文件进行说明和文档。
+- `main.go`: go的源码文件，未编译过的
+
+## 编译 .go 文件
+```bash
+GOOS=linux GOARCH=amd64 go build -o network-metrics-server main.go
+```
+net-metrics-server: 编译后得到的可执行的二进制文件
+main.go: go的源码文件
+GOARCH：选择处理器的架构，这里为amd64，即 x86 64位的
+GOOS：选择操作系统，Linux，macos，Windows
 
 ## 文件说明
 
