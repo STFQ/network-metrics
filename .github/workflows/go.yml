@@ -17,8 +17,21 @@ jobs:
       with:
         go-version: '1.20'
 
+    - name: Cache Go modules
+      uses: actions/cache@v3
+      with:
+        path: ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
     - name: Initialize Go module
       run: go mod init github.com/STFQ/network-metrics
+      # 这个步骤通常只需要运行一次，并且在项目中提交go.mod文件后就不再需要了
+
+    - name: Download dependencies
+      run: go mod download
+      # 这个步骤会生成go.sum文件，并下载所有依赖到本地缓存
 
     - name: Build
       run: GOOS=linux GOARCH=amd64 go build -o network-metrics-server main.go
@@ -26,5 +39,5 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: my-binary-${{ github.run_id }}
+        name: network-metrics-${{ github.run_id }}
         path: ./network-metrics-server
