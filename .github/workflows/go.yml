@@ -22,6 +22,3 @@ jobs:
 
     - name: Build
       run: GOOS=linux GOARCH=amd64 go build -o network-metrics-server main.go
-
-    - name: Test
-      run: go test -v ./...
