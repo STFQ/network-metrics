@@ -22,3 +22,9 @@ jobs:
 
     - name: Build
       run: GOOS=linux GOARCH=amd64 go build -o network-metrics-server main.go
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-binary-${{ github.run_id }}
+        path: ./network-metrics-server
