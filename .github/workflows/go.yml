@@ -7,7 +7,6 @@ on:
     branches: [ "master" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -19,10 +18,10 @@ jobs:
         go-version: '1.20'
 
     - name: Initialize Go module
-      run: go mod init
+      run: go mod init github.com/STFQ/network-metrics
 
     - name: Build
-      run: GOOS=linux GOARCH=amd64 go build -o ./network-metrics-server ../main.go
+      run: GOOS=linux GOARCH=amd64 go build -o network-metrics-server main.go
 
     - name: Test
       run: go test -v ./...
